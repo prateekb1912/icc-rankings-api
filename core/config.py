@@ -12,7 +12,7 @@ MAX_CONTENT_LENGTH = 1 * 1000 * 1000
 DB_USER = os.environ.get('DB_USER', 'postgres')
 DB_HOST = os.environ.get('DB_HOST', 'postgres')
 DB_PORT = os.environ.get('POSTGRES_PORT', 5432)
-DB_DB = os.environ.get('DB', 'postgres')
+DB_DB = os.environ.get('DB', 'rankings_db')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', 'postgres')
 
 SQLALCHEMY_DATABASE_URI = sqlalchemy.engine.url.URL.create(
@@ -24,4 +24,4 @@ SQLALCHEMY_DATABASE_URI = sqlalchemy.engine.url.URL.create(
     database=DB_DB
 )
 
-INTERNAL_URL = 9700
+INTERNAL_PORT = 9700
