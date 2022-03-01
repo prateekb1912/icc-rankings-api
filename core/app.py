@@ -5,6 +5,7 @@ from flask import Flask, jsonify, make_response, g
 
 from core import config
 from core.db import db
+from api.views import main_api_bp
 
 def register_hooks(app, db):
     @app.errorhandler(404)
@@ -45,5 +46,9 @@ def create_app():
     register_hooks(app, db)
 
     app.config['db'] = db
+
+    app.register_blueprint(
+        main_api_bp, url_prefix = f'/{config.CURRENT_API_VERSION}/'
+    )
 
     return app

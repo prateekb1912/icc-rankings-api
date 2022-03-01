@@ -1,9 +1,5 @@
 from sqlalchemy import (
-    Column, Boolean
-)
-
-from sqlalchemy import (
-    PrimaryKeyConstraint, Column, Integer, String, Index, BigInteger, ForeignKey, Enum
+    Column, Integer, String
 )
 
 class TeamRankings():
