@@ -15,14 +15,26 @@ class TeamRankings():
     points = Column(Integer)
     rating = Column(Integer)
 
+    def __init__(self, position, team, gender, format, matches, points, rating):
+        self.position = position
+        self.team = team
+        self.gender = gender
+        self.format = format
+        self.matches = matches
+        self.points = points
+        self.rating = rating
+
     def serialize(self):
         out = dict()
         out['position'] = self.position
         out['team'] = self.team
         out['gender'] = self.gender
-        out['format'] = self.format
-        out['matches'] = self.matches
-        out['points'] = self.points
-        out['rating'] = self.rating
+        out['rankingFormat'] = self.format
+        out['matchesPlayed'] = self.matches
+        out['totalPoints'] = self.points
+        out['currentRating'] = self.rating
 
         return out
+
+    def __repr__(self):
+        return f'<Team: {self.team}, Position: {self.position}>'
