@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 
-
-
 class TeamsRankingScraper():
     
     BASE_URL = 'https://www.icc-cricket.com/rankings/'
@@ -19,6 +17,8 @@ class TeamsRankingScraper():
 
         table = soup.find('tbody')
 
+        teams = []
+
         for row in table.find_all('tr'):
             data = row.find_all('td')
 
@@ -30,4 +30,6 @@ class TeamsRankingScraper():
             points = int(''.join(points.split(',')))
             rating = int(''.join(rating.split('\n')))
 
-            print([pos, team, matches, points, rating])
+            teams.append([pos, team, matches, points, rating]) 
+
+        return teams
