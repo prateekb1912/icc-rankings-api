@@ -1,11 +1,20 @@
+import config
 import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
-app.config.from_object(env_config)
+def create_app():
+    app = Flask(__name__)
+    app.config['JSON_SORT_KEYS'] = False
 
-@app.route("/")
-def index():
-    secret_key = app.config.get("SECRET_KEY")
-    return f"This is a secret key {secret_key}"
+    app.config['FLASK_DEBUG'] = 1
+    app.config['SQLALCHEMY_DATABASE_URI'] = config.Config.SQLALCHEMY_DATABASE_URI
+
+    db = SQLAlchemy()
+    db.init_app(app)
+
+    return app
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=True)
