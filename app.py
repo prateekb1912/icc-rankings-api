@@ -2,6 +2,7 @@ import config
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from views import api_bp
 
 def create_app():
     app = Flask(__name__)
@@ -12,6 +13,8 @@ def create_app():
 
     db = SQLAlchemy()
     db.init_app(app)
+
+    app.register_blueprint(api_bp, url_prefix = '/')
 
     return app
 
