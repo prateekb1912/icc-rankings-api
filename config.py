@@ -11,6 +11,7 @@ class Config(object):
     DEBUG = False
     DEVELOPMENT = False
     SECRET_KEY = os.getenv("SECRET_KEY", "this-is-the-default-key")
+    CURRENT_VERSION_API = 'v1'
 
     DB_USER = os.getenv('DB_USER')
     DB_PASSWORD = os.getenv('DB_PASSWORD')
