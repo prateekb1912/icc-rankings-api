@@ -28,14 +28,12 @@ class IDSModelBase(object):
 Base = declarative_base(cls=IDSModelBase)
 metadata = Base.metadata
 
-GenderEnum = Enum('mens', 'womens')
-FormatEnum = Enum('tests', 'odis', 't20is')
 
-class Teams():
+class Teams(Base):
     rank = Column(Integer)
     team_name = Column(String(20), primary_key=True)
-    gender = Column(Enum(GenderEnum), primary_key=True)
-    format = Column(Enum(FormatEnum), primary_key=True)
+    gender = Column(Enum('mens', 'womens', name = 'gender'), primary_key=True)
+    format = Column(Enum('tests', 'odis', 't20is', name = 'format'), primary_key=True)
     matches = Column(Integer, nullable=False)
     points = Column(Integer, nullable=False)
     rating = Column(Integer, nullable=False)
