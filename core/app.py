@@ -1,11 +1,14 @@
-import core.config as config
+import os
+import config as config
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from views import api_bp
+from api.views import api_bp
 
 app = Flask(__name__)
-app.config['JSON_SORT_KEYS'] = False
 
+env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
+app.config.from_object(env_config)
+app.config['JSON_SORT_KEYS'] = False
 app.config['FLASK_DEBUG'] = 1
 app.config['SQLALCHEMY_DATABASE_URI'] = config.Config.SQLALCHEMY_DATABASE_URI
 
